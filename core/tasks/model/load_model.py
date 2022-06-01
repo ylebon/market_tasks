@@ -1,7 +1,7 @@
 import os
 from glob import glob
 import joblib
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

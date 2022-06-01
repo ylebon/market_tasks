@@ -4,7 +4,7 @@ from glob import glob
 
 import pandas as pd
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 from config.core.config_services import ConfigServices
 
 # from bokeh.layouts import layout
@@ -89,7 +89,7 @@ class Task(TaskStep):
 if __name__ == '__main__':
     from logbook import StreamHandler, NestedSetup
     import sys
-    from tasks.core.tasks_factory import TasksFactory
+    from core.tasks_factory import TasksFactory
 
     # subscribe to instruments
     format_string = (

@@ -3,7 +3,7 @@ import time
 
 import pandas as pd
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Pattern(TaskStep):

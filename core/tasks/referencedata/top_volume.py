@@ -1,5 +1,5 @@
 from referencedata.core.referencedata import Referencedata
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

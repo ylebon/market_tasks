@@ -1,4 +1,4 @@
-from varatra_tasks.core.tasks.minio import create_bucket
+from core.minio import create_bucket
 
 
 def run(name):

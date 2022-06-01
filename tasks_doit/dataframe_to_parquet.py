@@ -4,7 +4,7 @@ import tempfile
 import digdag
 from dask import dataframe as dd
 
-from varatra_tasks.core.tasks.histdata import dataframe_to_parquet
+from core.histdata import dataframe_to_parquet
 
 
 def run(dataframe):

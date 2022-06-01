@@ -1,4 +1,4 @@
-from varatra_tasks.core.tasks.minio import download_file
+from core.minio import download_file
 
 
 def run(bucket_name, source, destination):

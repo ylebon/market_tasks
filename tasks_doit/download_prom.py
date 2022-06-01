@@ -1,8 +1,8 @@
 import joblib
 
-from varatra_tasks.core.tasks.histdata import load_prom
-from varatra_tasks.core.tasks.minio import upload_file
-from varatra_utils.time_util import get_date
+from core.histdata import load_prom
+from core.minio import upload_file
+from utils.time_util import get_date
 
 
 def run(instrument, start_date, end_date, destination, bucket_name="digdag"):

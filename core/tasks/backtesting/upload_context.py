@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, JSON, String
 
 from config.core.config_services import ConfigServices
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

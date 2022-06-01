@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from sklearn import preprocessing
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 def create_pattern(x):

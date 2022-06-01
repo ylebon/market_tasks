@@ -5,11 +5,11 @@ import pandas as pd
 from logbook import StreamHandler
 from tabulate import tabulate
 
-from varatra_features.core.feature_executor import FeatureExecutor
-from varatra_features.core.feature_loader import FeatureLoader
-from varatra_tasks.core.tasks.features import load_parquet
-from varatra_tasks.core.tasks.features import select_importances
-from varatra_tasks.core.tasks.features import sync_s3
+from features.core.feature_executor import FeatureExecutor
+from features.core.feature_loader import FeatureLoader
+from core.tasks.features import load_parquet
+from core.tasks.features import select_importances
+from core.tasks.features import sync_s3
 
 StreamHandler(sys.stdout, level=os.getenv('LOG_LEVEL', 'INFO')).push_application()
 from logbook import Logger

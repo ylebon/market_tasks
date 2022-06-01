@@ -10,21 +10,21 @@ import os
 import pandas as pd
 from doit.tools import config_changed
 
-from varatra_utils import time_util
+from utils import time_util
 from doit import get_var
 
 import toml
 import time
 import re
-from varatra_tasks.core.tasks_factory import TasksFactory
+from core.tasks_factory import TasksFactory
 import dask.dataframe as dd
 from distributed import Client
 import itertools
 import numpy as np
 
 BASE_DIR = os.path.abspath((os.path.join(os.path.dirname(__file__), '..')))
-DEFINITIONS_FILE = os.path.join(BASE_DIR, "varatra_features", "data")
-OUTPUT_DIRECTORY = os.path.join(BASE_DIR, "varatra_logs", "auto_portfolio")
+DEFINITIONS_FILE = os.path.join(BASE_DIR, "features", "data")
+OUTPUT_DIRECTORY = os.path.join(BASE_DIR, "logs", "auto_portfolio")
 
 DEFAULT_PARAMETERS = {
     "STORE": True,
@@ -119,9 +119,9 @@ def load_parameters():
         PARAMETERS["INSTRUMENTS"] = get_var('instruments').split(",")
     else:
         PARAMETERS["INSTRUMENTS"] = list()
-        db_client = tasks.database.create_client.run()
+        db_client = database.create_client.run()
         pattern = get_var('pattern', '.*')
-        for feed in tasks.database.series_list.run(db_client):
+        for feed in database.series_list.run(db_client):
             if re.match(pattern, feed):
                 PARAMETERS["INSTRUMENTS"].append(feed)
             else:
@@ -255,7 +255,7 @@ def task_load_data():
             dataset_params = toml.load(f"{output_directory}/dataset_params.toml")
 
             # load data
-            points = tasks.histdata.load_influx.run(
+            points = histdata.load_influx.run(
                 instrument,
                 dataset_params.get('START_DATE'),
                 dataset_params.get('END_DATE'),

@@ -14,7 +14,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

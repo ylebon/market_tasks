@@ -1,19 +1,19 @@
 """Tasks launcher.
 
 Usage:
-  tasks_launcher.py backtesting (--signaler=<signaler>) (--instrument=<instrument>) (--past=<past>) [--env=<env>] [--loglevel=<loglevel>]
-  tasks_launcher.py features_creator (--instrument=<instrument>) [--feature=<feature>] (--date=<date>) [--env=<env>] [--loglevel=<loglevel>]
-  tasks_launcher.py features_importance (--instrument=<instrument>) (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
-  tasks_launcher.py backup (--instrument=<instrument>) (--start-date=<start-date>) (--end-date=<end-date>) [--loglevel=<loglevel>]
-  tasks_launcher.py training_tpot (--instrument=<instrument>) (--target=<target>) [--estimator=<estimator>] [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
-  tasks_launcher.py training_automl (--instrument=<instrument>) (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
-  tasks_launcher.py training_autokeras (--instrument=<instrument>) (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
-  tasks_launcher.py training_autosklearn (--instrument=<instrument>) (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
-  tasks_launcher.py training_autogluon (--instrument=<instrument>) [--estimator=<estimator>] (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
-  tasks_launcher.py training_pycaret (--instrument=<instrument>) [--estimator=<estimator>] (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
-  tasks_launcher.py testing_ml (--instrument=<instrument>) (--target=<target>) [--env=<env>] [--loglevel=<loglevel>]
-  tasks_launcher.py (-h | --help)
-  tasks_launcher.py --version
+  task_runner.py backtesting (--signaler=<signaler>) (--instrument=<instrument>) (--past=<past>) [--env=<env>] [--loglevel=<loglevel>]
+  task_runner.py features_creator (--instrument=<instrument>) [--feature=<feature>] (--date=<date>) [--env=<env>] [--loglevel=<loglevel>]
+  task_runner.py features_importance (--instrument=<instrument>) (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
+  task_runner.py backup (--instrument=<instrument>) (--start-date=<start-date>) (--end-date=<end-date>) [--loglevel=<loglevel>]
+  task_runner.py training_tpot (--instrument=<instrument>) (--target=<target>) [--estimator=<estimator>] [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
+  task_runner.py training_automl (--instrument=<instrument>) (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
+  task_runner.py training_autokeras (--instrument=<instrument>) (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
+  task_runner.py training_autosklearn (--instrument=<instrument>) (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
+  task_runner.py training_autogluon (--instrument=<instrument>) [--estimator=<estimator>] (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
+  task_runner.py training_pycaret (--instrument=<instrument>) [--estimator=<estimator>] (--target=<target>) [--env=<env>] [--feature=<feature>] [--loglevel=<loglevel>]
+  task_runner.py testing_ml (--instrument=<instrument>) (--target=<target>) [--env=<env>] [--loglevel=<loglevel>]
+  task_runner.py (-h | --help)
+  task_runner.py --version
 
 Options:
   -e --env=<env>                Environment.
@@ -36,7 +36,7 @@ import sys
 from docopt import docopt
 from logbook import StreamHandler, set_datetime_format, FileHandler, NestedSetup
 
-from varatra_tasks.launchers import backtesting, features_creator, training_tpot, training_automl, testing_ml, backup, \
+from launchers import backtesting, features_creator, training_tpot, training_automl, testing_ml, backup, \
     training_autogluon, training_autokeras, training_autosklearn, features_importance, training_pycaret
 
 
@@ -256,7 +256,7 @@ if __name__ == '__main__':
     )
 
     # log file
-    log_file = os.path.join(os.path.dirname(__file__), '..', 'varatra_logs', 'varatra_tasks.log')
+    log_file = os.path.join(os.path.dirname(__file__), '../..', 'logs', 'tasks.log')
 
     # create directory
     logs_dir = os.path.dirname(log_file)

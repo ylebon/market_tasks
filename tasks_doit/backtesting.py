@@ -3,12 +3,12 @@ import sys
 
 from logbook import StreamHandler
 
-from varatra_backtesting.core.backesting import SignalBackTesting
-from varatra_patterns.recursionlimit import recursionlimit
-from varatra_tasks.core.tasks.backtesting import upload_report
-from varatra_tasks.core.tasks.minio import dowload_dir
-from varatra_tasks.core.tasks.minio import upload_file
-from varatra_utils.time_util import get_last_interval
+from backtesting.core.backesting import SignalBackTesting
+from patterns.recursionlimit import recursionlimit
+from core.backtesting import upload_report
+from core.minio import dowload_dir
+from core.minio import upload_file
+from utils.time_util import get_last_interval
 
 StreamHandler(sys.stdout, level=os.getenv('LOG_LEVEL', 'INFO')).push_application()
 

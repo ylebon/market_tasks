@@ -3,8 +3,8 @@ import sys
 
 from logbook import StreamHandler
 
-from varatra_features.core.feature_executor import FeatureExecutor
-from varatra_utils import time_util
+from features.core.feature_executor import FeatureExecutor
+from utils import time_util
 StreamHandler(sys.stdout, level=os.getenv('LOG_LEVEL', 'INFO')).push_application()
 
 

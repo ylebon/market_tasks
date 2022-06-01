@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-lib_dir = '/Users/madazone/Workspace/varatra_signaler'
+lib_dir = '/Users/madazone/Workspace/signaler'
 sys.path.append(lib_dir)
 
 from tabulate import tabulate
@@ -10,9 +10,9 @@ import pprint
 import pandas as pd
 import time
 
-from varatra_mlearn.core.mlearn_storage import MLearnStorage
-from varatra_backtesting.core.backtesting_runner import BacktestingRunner
-from varatra_utils import time_util
+from mlearn.core.mlearn_storage import MLearnStorage
+from backtesting.core.backtesting_runner import BacktestingRunner
+from utils import time_util
 from doit import get_var
 import json
 import toml
@@ -20,22 +20,22 @@ import time
 from collections import OrderedDict
 import sys
 from logbook import Logger, FileHandler
-from varatra_tasks.core.tasks_factory import TasksFactory
+from core.tasks_factory import TasksFactory
 import re
 from distributed import Client
 from doit.tools import result_dep
 from doit.tools import timeout
 import datetime
 import asyncio
-from varatra_features.core.features_loader import FeaturesLoader
-from varatra_features.core.feature import Feature
+from features.core.features_loader import FeaturesLoader
+from features.core.feature import Feature
 
 # DEFAULT PARAMETERS
 DEFAULT_PARAMETERS = {
     "DSET_START_DATE": -30,
     "DSET_END_DATE": 0,
     "UPTODATE_CHECK": 30,
-    "OUTPUT_DIRECTORY": "/Users/madazone/Workspace/varatra_signaler/varatra_doit/output/etl",
+    "OUTPUT_DIRECTORY": "/Users/madazone/Workspace/signaler/doit/output/etl",
     "INSTRUMENTS": [
         'OANDA_EUR_USD',
         'OANDA_GBP_USD',
@@ -45,7 +45,7 @@ DEFAULT_PARAMETERS = {
 }
 
 PARAMETERS = dict()
-DEFINITIONS_FILE = "/Users/madazone/Workspace/varatra_signaler/varatra_features/data"
+DEFINITIONS_FILE = "/Users/madazone/Workspace/signaler/features/data"
 DASK_SCHEDULER = '51.15.110.238:8786'
 SCHEDULER_CLIENT = Client(DASK_SCHEDULER)
 
@@ -84,9 +84,9 @@ def load_parameters():
         PARAMETERS["INSTRUMENTS"] = get_var('instruments').split(",")
     else:
         PARAMETERS["INSTRUMENTS"] = list()
-        db_client = tasks.database.create_client.run()
+        db_client = database.create_client.run()
         pattern = get_var('pattern', '.*')
-        for feed in tasks.database.series_list.run(db_client):
+        for feed in database.series_list.run(db_client):
             if re.match(pattern, feed):
                 PARAMETERS["INSTRUMENTS"].append(feed)
             else:
@@ -106,7 +106,7 @@ def task_feed_dates():
 
     """
     def feed_dates(feed):
-        db_client = tasks.database.create_client.run()
+        db_client = database.create_client.run()
         query_first = f"SELECT first(bid_price) from {feed}"
         query_last = f"SELECT last(bid_price) from {feed}"
         result_first = db_client.query(query_first)
@@ -137,7 +137,7 @@ def task_store_feed():
     """
 
     def store_feed(instrument):
-        points = tasks.histdata.load_influx.run(
+        points = histdata.load_influx.run(
             instrument,
             PARAMETERS['DSET_START_DATE'],
             PARAMETERS['DSET_END_DATE']

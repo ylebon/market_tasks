@@ -4,7 +4,7 @@ import pandas as pd
 from pytz import timezone
 from tzlocal import get_localzone
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

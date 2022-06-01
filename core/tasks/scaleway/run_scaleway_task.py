@@ -4,7 +4,7 @@ from libcloud.compute.providers import get_driver
 from libcloud.compute.types import Provider
 
 from config.core.config_services import ConfigServices
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

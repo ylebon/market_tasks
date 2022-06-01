@@ -3,10 +3,10 @@ import sys
 
 from logbook import StreamHandler
 
-from varatra_tasks.core.tasks.features import sync_s3 as sync_features
-from varatra_tasks.core.tasks.feeds import load_parquet
-from varatra_tasks.core.tasks.model import sync_s3 as sync_model
-from varatra_tasks.core.tasks.model import testing
+from core.tasks.features import sync_s3 as sync_features
+from core.tasks.feeds import load_parquet
+from core.tasks.model import sync_s3 as sync_model
+from core.tasks.model import testing
 
 StreamHandler(sys.stdout, level=os.getenv('LOG_LEVEL', 'INFO')).push_application()
 from logbook import Logger

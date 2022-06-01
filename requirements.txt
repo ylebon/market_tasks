@@ -1,0 +1,11 @@
+docopt
+logbook
+dask
+doit
+joblib
+boto3
+sqlalchemy
+influxdb
+toml
+sklearn
+pandas

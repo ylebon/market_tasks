@@ -11,14 +11,14 @@ BASE_DIR = os.path.abspath((os.path.join(os.path.dirname(__file__), '..')))
 sys.path.append(BASE_DIR)
 
 from datetime import datetime, timedelta
-from varatra_tasks.core.tasks.prometheus import get_metrics
-from varatra_signaler.core.signaler_backtesting import SignalerBacktesting
-from varatra_patterns.recursionlimit import recursionlimit
-from varatra_tasks.core.tasks.backtesting import upload_report
-from varatra_tasks.core.tasks.minio import upload_file
+from core.prometheus import get_metrics
+from signaler.core.signaler_backtesting import SignalerBacktesting
+from patterns.recursionlimit import recursionlimit
+from core.backtesting import upload_report
+from core.minio import upload_file
 
 PARAMETERS = {
-    'OUTPUT_DIRECTORY': os.path.join(expanduser("~"), 'varatra_output')
+    'OUTPUT_DIRECTORY': os.path.join(expanduser("~"), 'output')
 }
 
 

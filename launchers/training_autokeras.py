@@ -6,12 +6,12 @@ from logbook import StreamHandler
 from sklearn.model_selection import train_test_split
 from tabulate import tabulate
 
-from varatra_features.core.feature_executor import FeatureExecutor
-from varatra_features.core.feature_loader import FeatureLoader
-from varatra_tasks.core.tasks.features import load_parquet
-from varatra_tasks.core.tasks.features import sync_s3
-from varatra_tasks.core.tasks.model import classification_report, confusion_matrix
-from varatra_tasks.core.tasks.model import dump_to_s3
+from features.core.feature_executor import FeatureExecutor
+from features.core.feature_loader import FeatureLoader
+from core.tasks.features import load_parquet
+from core.tasks.features import sync_s3
+from core.tasks.model import classification_report, confusion_matrix
+from core.tasks.model import dump_to_s3
 
 StreamHandler(sys.stdout, level=os.getenv('LOG_LEVEL', 'INFO')).push_application()
 from datetime import datetime

@@ -7,10 +7,10 @@ import dateutil.parser
 from joblib import load
 
 from config.core.config_services import ConfigServices
-from tasks.core.task_step import TaskStep
-from tasks.core.tasks.features import load_parquet
-from tasks.core.tasks.features import sync_s3
-from tasks.core.tasks.model import classification_report
+from core.task_step import TaskStep
+from core.tasks.features import load_parquet
+from core.tasks.features import sync_s3
+from core.tasks.model import classification_report
 
 
 class Task(TaskStep):

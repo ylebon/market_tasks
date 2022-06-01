@@ -1,4 +1,4 @@
-from varatra_tasks.core.tasks.histdata import load_prom
+from core.tasks.histdata import load_prom
 
 
 def test_loading():

@@ -3,7 +3,7 @@ import sys
 
 from logbook import StreamHandler
 
-from varatra_tasks.core.tasks.aws import run_fargate_task
+from core.tasks.aws import run_fargate_task
 
 StreamHandler(sys.stdout, level=os.getenv('LOGLEVEL', 'INFO')).push_application()
 

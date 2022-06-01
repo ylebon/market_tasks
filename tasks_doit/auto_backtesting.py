@@ -8,22 +8,22 @@ sys.path.append(BASE_DIR)
 import os
 import pandas as pd
 
-from varatra_backtesting.core.backesting import SignalBackTesting
-from varatra_patterns.recursionlimit import recursionlimit
+from backtesting.core.backesting import SignalBackTesting
+from patterns.recursionlimit import recursionlimit
 
-from varatra_utils import time_util
+from utils import time_util
 from doit import get_var
 import toml
 from collections import OrderedDict
 from logbook import FileHandler
-from varatra_tasks.core.tasks_factory import TasksFactory
+from core.tasks_factory import TasksFactory
 import re
 from sqlalchemy import create_engine
 from datetime import datetime, timedelta
 import uuid
 
 BASE_DIR = os.path.abspath((os.path.join(os.path.dirname(__file__), '..')))
-OUTPUT_DIRECTORY = os.path.join(BASE_DIR, "varatra_logs", "auto_backtesting")
+OUTPUT_DIRECTORY = os.path.join(BASE_DIR, "logs", "auto_backtesting")
 
 # DEFAULT PARAMETERS
 DEFAULT_PARAMETERS = {
@@ -148,9 +148,9 @@ def load_parameters():
         PARAMETERS["INSTRUMENTS"] = get_var('instruments').split(",")
     else:
         PARAMETERS["INSTRUMENTS"] = list()
-        db_client = tasks.database.create_client.run()
+        db_client = database.create_client.run()
         pattern = get_var('pattern', '.*')
-        for feed in tasks.database.series_list.run(db_client):
+        for feed in database.series_list.run(db_client):
             if re.match(pattern, feed):
                 PARAMETERS["INSTRUMENTS"].append(feed)
             else:

@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler, RobustScaler
 from sklearn.linear_model import LogisticRegression
 from xgboost import XGBClassifier
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

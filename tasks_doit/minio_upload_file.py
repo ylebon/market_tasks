@@ -1,4 +1,4 @@
-from varatra_tasks.core.tasks.minio import upload_file
+from core.tasks.minio import upload_file
 
 
 def run(bucket_name, source, destination):

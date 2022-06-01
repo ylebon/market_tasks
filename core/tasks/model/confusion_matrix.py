@@ -1,7 +1,7 @@
 import pandas as pd
 from tabulate import tabulate
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

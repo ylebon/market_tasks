@@ -1,6 +1,6 @@
 import pandas as pd
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):
@@ -22,7 +22,7 @@ class Task(TaskStep):
 
 
 if __name__ == "__main__":
-    from tasks.core.tasks.histdata.load_prom import Task as LoadPromTask
+    from core.tasks.histdata.load_prom import Task as LoadPromTask
 
     t = LoadPromTask("load_prom")
     data = t.run("OANDA_WTICO_USD", "2020-01-05", "2020-01-05")

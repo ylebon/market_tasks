@@ -1,7 +1,7 @@
 import boto3
 
-from config.core.config_services import ConfigServices
-from tasks.core.task_step import TaskStep
+from core.config_services import ConfigServices
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

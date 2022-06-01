@@ -2,7 +2,7 @@ import importlib.util
 import os
 
 from patterns.singleton import MetaClassSingleton
-from tasks.core.task_group import TaskGroup
+from core.task_group import TaskGroup
 
 
 class TasksFactory(metaclass=MetaClassSingleton):

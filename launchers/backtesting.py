@@ -3,9 +3,9 @@ import sys
 
 from logbook import StreamHandler
 
-from varatra_patterns.recursionlimit import recursionlimit
-from varatra_signaler.core.signaler_backtesting import SignalerBacktesting
-from varatra_tasks.core.tasks.backtesting import upload_report, upload_context
+from patterns.recursionlimit import recursionlimit
+from signaler.core.signaler_backtesting import SignalerBacktesting
+from core.tasks.backtesting import upload_report, upload_context
 
 StreamHandler(sys.stdout, level=os.getenv('LOG_LEVEL', 'INFO')).push_application()
 
@@ -15,7 +15,7 @@ def launch(signaler_name, instrument, start_date=None, end_date=None, last_hours
     Run backtesting
 
     """
-    output_directory = os.path.join(os.path.expanduser("~"), 'varatra_output')
+    output_directory = os.path.join(os.path.expanduser("~"), 'output')
     backtester = SignalerBacktesting.create_from_name(
         signaler_name,
         [instrument],

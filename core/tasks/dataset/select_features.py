@@ -1,6 +1,6 @@
 from sklearn.feature_selection import SelectKBest, chi2
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

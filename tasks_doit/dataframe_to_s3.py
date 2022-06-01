@@ -2,7 +2,7 @@ import os
 
 from dask import dataframe as dd
 
-from varatra_tasks.core.tasks.histdata import dataframe_to_s3
+from core.histdata import dataframe_to_s3
 
 
 def run(dataframe):

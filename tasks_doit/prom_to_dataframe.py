@@ -1,7 +1,7 @@
 import digdag
 import joblib
 
-from varatra_tasks.core.tasks.histdata import prom_to_dataframe
+from core.tasks.histdata import prom_to_dataframe
 
 
 def run(prom_data):

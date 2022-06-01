@@ -8,10 +8,10 @@ import os
 
 from dask import dataframe as dd
 
-from varatra_tasks.core.tasks.histdata import dataframe_to_s3
-from varatra_tasks.core.tasks.histdata import load_prom
-from varatra_tasks.core.tasks.histdata import prom_to_dataframe
-from varatra_utils.time_util import get_date
+from core.tasks.histdata import dataframe_to_s3
+from core.tasks.histdata import load_prom
+from core.tasks.histdata import prom_to_dataframe
+from utils.time_util import get_date
 
 
 def launch(instrument_id, start_date, end_date):

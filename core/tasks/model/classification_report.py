@@ -2,7 +2,7 @@ import pandas as pd
 from imblearn.metrics import classification_report_imbalanced
 from sklearn.metrics import classification_report
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 class Task(TaskStep):

@@ -1,19 +1,19 @@
 import sys
 
-lib_dir = '/Users/madazone/Workspace/varatra_signaler'
+lib_dir = '/Users/madazone/Workspace/signaler'
 sys.path.append(lib_dir)
 
 import os
 import pandas as pd
 
-from varatra_mlearn.core.mlearn_storage import MLearnStorage
-from varatra_backtesting.core.backtesting_runner import BacktestingRunner
-from varatra_utils import time_util
+from mlearn.core.mlearn_storage import MLearnStorage
+from backtesting.core.backtesting_runner import BacktestingRunner
+from utils import time_util
 from doit import get_var
 import toml
 from logbook import FileHandler
-from varatra_tasks.core.tasks_factory import TasksFactory
-from varatra_neuro.neuro import TimeSeriesPrediction
+from core.tasks_factory import TasksFactory
+from neuro.neuro import TimeSeriesPrediction
 import re
 import joblib
 
@@ -23,7 +23,7 @@ DEFAULT_PARAMETERS = {
     "DSET_END_DATE": -3,
     "BTEST_START_DATE": -2,
     "BTEST_END_DATE": 0,
-    "OUTPUT_DIRECTORY": "/Users/madazone/Workspace/varatra_signaler/varatra_doit/output/neuro",
+    "OUTPUT_DIRECTORY": "/Users/madazone/Workspace/signaler/doit/output/neuro",
     "NEUROS": {
         "TimeSeries": {
 
@@ -81,9 +81,9 @@ def load_parameters():
         PARAMETERS["INSTRUMENTS"] = get_var('instruments').split(",")
     else:
         PARAMETERS["INSTRUMENTS"] = list()
-        db_client = tasks.database.create_client.run()
+        db_client = database.create_client.run()
         pattern = get_var('pattern', '.*')
-        for feed in tasks.database.series_list.run(db_client):
+        for feed in database.series_list.run(db_client):
             if re.match(pattern, feed):
                 PARAMETERS["INSTRUMENTS"].append(feed)
             else:
@@ -172,7 +172,7 @@ def task_run_neuro():
         tasks = TasksFactory.create()
 
         # points
-        points = tasks.histdata.load_influx.run(
+        points = histdata.load_influx.run(
             neuro_config.get('INSTRUMENT'),
             neuro_config.get('START_DATE'),
             neuro_config.get('END_DATE'),

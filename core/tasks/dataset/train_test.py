@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
 
-from tasks.core.task_step import TaskStep
+from core.task_step import TaskStep
 
 
 @dataclass

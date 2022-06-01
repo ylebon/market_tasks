@@ -1,6 +1,6 @@
 import digdag
 
-from varatra_tasks.core.tasks.prometheus import get_metrics
+from core.tasks.prometheus import get_metrics
 
 
 def run(pattern):

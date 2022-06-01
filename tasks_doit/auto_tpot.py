@@ -10,18 +10,18 @@ import numpy as np
 import os
 import tpot
 import subprocess
-from varatra_features.core.feature_executor import FeatureExecutor
+from features.core.feature_executor import FeatureExecutor
 import pandas as pd
 from sklearn.model_selection import train_test_split as scikit_train_test_split
 from sklearn.externals import joblib
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.feature_selection import RFE
 from sklearn.linear_model import LogisticRegression
-from varatra_mlearn.core.mlearn_storage import MLearnStorage
-from varatra_backtesting.core.backesting import SignalBackTesting
+from mlearn.core.mlearn_storage import MLearnStorage
+from backtesting.core.backesting import SignalBackTesting
 from doit.tools import config_changed
 
-from varatra_utils import time_util
+from utils import time_util
 from doit import get_var
 from datetime import datetime, timedelta
 
@@ -32,18 +32,18 @@ from dask_ml import preprocessing as dask_preprocessing
 import toml
 import ast
 import re
-from varatra_tasks.core.tasks_factory import TasksFactory
-from varatra_features.core.features_loader import FeaturesLoader
-from varatra_features.core.feature import Feature
+from core.tasks_factory import TasksFactory
+from features.core.features_loader import FeaturesLoader
+from features.core.feature import Feature
 import dask.dataframe as dd
 import multiprocessing as mp
 
-from varatra_patterns.recursionlimit import recursionlimit
+from patterns.recursionlimit import recursionlimit
 from sklearn.metrics import classification_report
 from sqlalchemy import create_engine
 
-DEFINITIONS_FILE = os.path.join(BASE_DIR, "varatra_features", "data")
-OUTPUT_DIRECTORY = os.path.join(BASE_DIR, "varatra_logs", "auto_tpot")
+DEFINITIONS_FILE = os.path.join(BASE_DIR, "features", "data")
+OUTPUT_DIRECTORY = os.path.join(BASE_DIR, "logs", "auto_tpot")
 
 from dask.distributed import Client
 
@@ -229,9 +229,9 @@ def load_parameters():
 
     else:
         PARAMETERS["INSTRUMENTS"] = list()
-        db_client = tasks.database.create_client.run()
+        db_client = database.create_client.run()
         pattern = get_var('pattern', '.*')
-        for feed in tasks.database.series_list.run(db_client):
+        for feed in database.series_list.run(db_client):
             if re.match(pattern, feed):
                 PARAMETERS["INSTRUMENTS"].append(feed)
             else:
@@ -542,7 +542,7 @@ def task_load_data():
             for feed_alias, feed in feature.feeds.items():
                 if feed not in data:
                     feed_source, feed_field = feed.split(".")
-                    points = tasks.histdata.load_influx.run(
+                    points = histdata.load_influx.run(
                         feed_source,
                         start_date,
                         end_date,

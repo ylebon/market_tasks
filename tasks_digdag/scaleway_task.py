@@ -3,7 +3,7 @@ import sys
 
 from logbook import StreamHandler
 
-from varatra_tasks.core.tasks.scaleway import run_scaleway_task
+from core.tasks.scaleway import run_scaleway_task
 
 StreamHandler(sys.stdout, level=os.getenv('LOGLEVEL', 'INFO')).push_application()
 
